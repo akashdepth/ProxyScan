@@ -1,0 +1,59 @@
+import urllib2
+import timeit
+import os
+import re
+x=0
+Proxies = []
+url=""
+for line in open('proxy.conf'):
+    line=line.replace(' ', "")
+    line=line.replace('\n',"")
+    if line!="" and (not line.startswith("#")):
+         if line.startswith("http"):
+             Proxies.append(line.rstrip('\n')) 
+         if line.startswith("url"):
+             line=line.replace("url", "")
+             url=line
+os.system('clear')
+print url," is pinging"
+PingTime=[]
+mod=len(Proxies)
+for p in range(0,mod):
+    PingTime.append(0)
+while (True):
+    proxy_support = urllib2.ProxyHandler({"http":Proxies[x]})
+    opener = urllib2.build_opener(proxy_support)
+    urllib2.install_opener(opener)
+    try:
+        start = timeit.default_timer()
+        html = urllib2.urlopen(url, timeout = 5).read()
+        stop = timeit.default_timer()
+        print Proxies[x],"ping is ",stop - start
+        PingTime[x]=stop-start            
+    except:
+        print Proxies[x]," is not working"
+        PingTime[x]=12345
+    if(x>=mod-1):
+        ptime=1234
+        ind=0
+        for p in range(0,mod):
+            if(ptime>PingTime[p]):
+                ptime=PingTime[p]
+                ind=p  
+        if "@" in Proxies[ind]:
+            pro=re.split('@',Proxies[ind])
+            pro=re.split(':',pro[len(pro)-1])
+        else:
+            pro=re.split('/',Proxies[ind])                    
+            pro=re.split(':',pro[2])        
+        os.system('gsettings set org.gnome.system.proxy.http host '+pro[0])
+        os.system('gsettings set org.gnome.system.proxy.http port '+pro[1])
+        os.system('gsettings set org.gnome.system.proxy.https host '+pro[0])
+        os.system('gsettings set org.gnome.system.proxy.https port '+pro[1])
+        os.system('gsettings set org.gnome.system.proxy.socks host '+pro[0])
+        os.system('gsettings set org.gnome.system.proxy.socks port '+pro[1])
+        os.system('gsettings set org.gnome.system.proxy.ftp host '+pro[0])
+        os.system('gsettings set org.gnome.system.proxy.ftp port '+pro[1])
+
+        print pro[0], " proxy and ",pro[1],"port"," has been set to your setting"
+    x=(x+1)%mod

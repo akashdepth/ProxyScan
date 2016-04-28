@@ -1,0 +1,10 @@
+Copyright 2016 Akash Chaudhary (akashdepth@gmail.com)
+
+WHAT DOES  IT ?
+this software selects best proxy among many proxies and set best proxy to your setting
+
+HOW TO USE IT ?:
+
+To use this software you should configure proxy.conf and add your proxies to this file 
+and install python and run following command into this folder
+python init.py 
