@@ -5,7 +5,7 @@ import re
 x=0
 Proxies = []
 url=""
-for line in open('/opt/proxyscan/proxy.conf'):
+for line in open('/opt/ProxyScan/proxy.conf'):
     line=line.replace(' ', "")
     line=line.replace('\n',"")
     if line!="" and (not line.startswith("#")):

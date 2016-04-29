@@ -1,0 +1,6 @@
+welcome to proxy scan 1.0
+
+this software set best proxy to your setting 
+
+to use this you are require to configure proxy 
+right click on icon and configure proxies

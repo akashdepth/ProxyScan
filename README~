@@ -6,7 +6,5 @@ this software selects best proxy among many proxies and set best proxy to your s
 HOW TO USE IT ?:
 
 To use this software you should configure proxy.conf and add your proxies to this file 
-and install this by
-./install.sh
-and you can search ProxyScan into your applications and lauch it to your launchbar
-thank you
+and install python and run following command into this folder
+python init.py 

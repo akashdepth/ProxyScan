@@ -1,0 +1,2 @@
+python /opt/proxyScan/init.py
+chromium-browser

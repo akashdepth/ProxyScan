@@ -1,0 +1,15 @@
+[Desktop Entry]
+Type=Application
+Terminal=true
+Name=ProxyScan
+Icon=/opt/proxyscan/proxyscan.png
+Exec=/opt/proxyscan/proxyscan.sh
+Actions=ConfigureProxyScan;Help
+X-AppInstall-Package=proxy-scan
+[Desktop Action ConfigureProxyScan]
+Exec=gnome-terminal -x sh -c "sudo vi /opt/proxyscan/proxy.conf"
+Name=ConfigureProxyScan
+[Desktop Action Help]
+Terminal=true
+Exec=vi /opt/proxyscan/help.txt
+Name=Help
